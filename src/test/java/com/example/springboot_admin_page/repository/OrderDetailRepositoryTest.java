@@ -20,9 +20,9 @@ public class OrderDetailRepositoryTest extends SpringbootAdminPageApplication {
 
         orderDetail.setOrderAt(LocalDateTime.now());
 
-        orderDetail.setUserId(5L);
+//        orderDetail.setUserId(5L);
 
-        orderDetail.setItemId(1L);
+//        orderDetail.setItemId(1L);
 
         OrderDetail newOrderDetail = orderDetailRepository.save(orderDetail);
         Assert.assertNotNull(newOrderDetail);

@@ -1,6 +1,7 @@
 package com.example.springboot_admin_page.repository;
 
 import com.example.springboot_admin_page.SpringbootAdminPageApplication;
+import com.example.springboot_admin_page.model.entity.Item;
 import com.example.springboot_admin_page.model.entity.User;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -36,13 +37,18 @@ public class UserRepositoryTest extends SpringbootAdminPageApplication {
     }
 
     @Test
+    @Transactional
     public void read(){
-        Optional<User> user = userRepository.findById(2L);
+        Optional<User> user = userRepository.findById(5L);
 
 
         user.ifPresent(selectUser -> {
-            System.out.println("user: " + selectUser);
-            System.out.println("email: "+ selectUser.getEmail());
+
+            selectUser.getOrderDetailList().stream().forEach(detail ->{
+                Item item = detail.getItem();
+                System.out.println(item);
+
+            });
         });
 
     }
