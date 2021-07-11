@@ -4,10 +4,12 @@ import com.example.springboot_admin_page.SpringbootAdminPageApplication;
 import com.example.springboot_admin_page.model.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+@SpringBootTest
 public class UserRepositoryTest extends SpringbootAdminPageApplication {
 
     //직접 객체 안만들고 알아서 의존성주입을 해줌. Dependency Injection
