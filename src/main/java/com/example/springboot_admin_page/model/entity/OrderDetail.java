@@ -11,19 +11,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="User")
-public class User {
+@Table(name="order_detail")
+public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String account;
-    private String email;
-    private String phoneNumber;
-    private LocalDateTime createdAt;
-    private String createdBy;
-    @Column(nullable = true)
-    private LocalDateTime updatedAt;
-    @Column(nullable = true)
-    private String updatedBy;
+    private LocalDateTime orderAt;
+
+    private Long userId;
+
+    private Long itemId;
 }
