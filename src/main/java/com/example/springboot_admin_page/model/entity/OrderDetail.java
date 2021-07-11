@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,22 +15,39 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="order_detail")
+
 // lombok을 쓰게 되면 ToString 자동으로 만들어주는데 user, item이 서로 상호충돌 나서 에러생김. 연관관계인 경우 exclude해서 충돌 막아야함
-@ToString(exclude = {"user","item"})
+//@ToString(exclude = {"user","item"})
 public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String status;
+
     private LocalDateTime orderAt;
 
-    //N:1 = orderdetail: user
-    @ManyToOne
-    private User user; //user_id 알아서 찾아
+    private LocalDateTime arrivalDate;
 
-    @ManyToOne
-    private Item item;
+    private Integer quantity;
+
+    private BigDecimal totalPrice;
+
+    private LocalDateTime createdAt;
+
+    private String createdBy;
+
+    private LocalDateTime updatedAt;
+
+    private String updatedBy;
+
+//
+//    //N:1 = orderdetail: user
+//    @ManyToOne
+//    private User user; //user_id 알아서 찾아
+//
+//    @ManyToOne
+//    private Item item;
 
 
 }

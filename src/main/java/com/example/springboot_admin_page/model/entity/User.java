@@ -21,13 +21,25 @@ public class User {
     private Long id;
 
     private String account;
+
+    private String password;
+
+    private String status;
+
     private String email;
+
     private String phoneNumber;
+
+    private LocalDateTime registeredAt;
+
+    private LocalDateTime unregisteredAt;
+
     private LocalDateTime createdAt;
+
     private String createdBy;
-    @Column(nullable = true)
+
     private LocalDateTime updatedAt;
-    @Column(nullable = true)
+
     private String updatedBy;
 
     //LAZY = 지연로딩, EAGER=즉시로딩
@@ -39,7 +51,7 @@ public class User {
     // 연관관계 있는 테이블 다 JOIN 하고 그 테이블에서 Select
     // JOIN 할게 많으면 select 하나만 해도 엄청 오래걸릴 수 있음
     // 따라서 EAGER는 1:1 일때 추천
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<OrderDetail> orderDetailList;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+//    private List<OrderDetail> orderDetailList;
 
 }
