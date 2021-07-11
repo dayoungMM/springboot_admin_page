@@ -41,4 +41,5 @@ public class User {
     // 따라서 EAGER는 1:1 일때 추천
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<OrderDetail> orderDetailList;
+
 }

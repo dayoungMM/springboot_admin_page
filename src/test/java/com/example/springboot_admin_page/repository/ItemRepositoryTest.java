@@ -20,8 +20,8 @@ public class ItemRepositoryTest extends SpringbootAdminPageApplication {
     public void create(){
         Item item = new Item();
         item.setName("노트북");
-        item.setPrice(1000000);
-        item.setContent("samsung");
+        item.setPrice(1200000);
+        item.setContent("LG");
 
         Item newItem = itemRepository.save(item);
         Assert.assertNotNull(newItem);
