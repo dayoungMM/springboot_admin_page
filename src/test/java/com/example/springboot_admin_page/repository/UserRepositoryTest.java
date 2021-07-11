@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @SpringBootTest
 public class UserRepositoryTest extends SpringbootAdminPageApplication {
@@ -20,9 +21,9 @@ public class UserRepositoryTest extends SpringbootAdminPageApplication {
     @Test
     public void create(){
         User user = new User();
-        user.setAccount("TestUser01");
-        user.setEmail("TestUser01@gmail.com");
-        user.setPhoneNumber("010-1111-1111");
+        user.setAccount("TestUser02");
+        user.setEmail("TestUser02@gmail.com");
+        user.setPhoneNumber("010-2111-1111");
         user.setCreatedAt(LocalDateTime.now());
         user.setCreatedBy("admin");
 
@@ -31,11 +32,30 @@ public class UserRepositoryTest extends SpringbootAdminPageApplication {
         System.out.println("newUser: "  + newUser);
     }
 
+    @Test
     public void read(){
+        Optional<User> user = userRepository.findById(2L);
+
+
+        user.ifPresent(selectUser -> {
+            System.out.println("user: " + selectUser);
+            System.out.println("email: "+ selectUser.getEmail());
+        });
 
     }
 
+    @Test
     public void update(){
+        Optional<User> user = userRepository.findById(2L);
+
+
+        user.ifPresent(selectUser -> {
+            selectUser.setAccount("pppp");
+            selectUser.setUpdatedAt(LocalDateTime.now());
+            selectUser.setUpdatedBy("update method()");
+
+            userRepository.save(selectUser);
+        });
 
     }
 }
