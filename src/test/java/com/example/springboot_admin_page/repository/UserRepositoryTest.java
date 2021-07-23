@@ -25,14 +25,16 @@ public class UserRepositoryTest extends SpringbootAdminPageApplication {
 
     @Test
     public void create(){
-        String account = "TEST01";
-        String password = "TEST01";
+        String account = "TEST04";
+        String password = "TEST04";
         String status = "REGISTERED";
         String email = "Test01@gmail.com";
-        String phoneNumber = "010-1111-2222";
+        String phoneNumber = "010-3333-4444";
         LocalDateTime registeredAt  = LocalDateTime.now();
-        LocalDateTime createdAt = LocalDateTime.now();
-        String createdBy = "AdminServer";
+//        LocalDateTime createdAt = LocalDateTime.now();
+//        String createdBy = "AdminServer";
+
+
 
         User user = new User();
         user.setAccount(account);
@@ -41,15 +43,16 @@ public class UserRepositoryTest extends SpringbootAdminPageApplication {
         user.setEmail(email);
         user.setPhoneNumber(phoneNumber);
         user.setRegisteredAt(registeredAt);
-        user.setCreatedAt(createdAt);
-        user.setCreatedBy(createdBy);
+//        user.setCreatedAt(createdAt);
+//        user.setCreatedBy(createdBy);
 
         User newUser = userRepository.save(user);
 
         Assert.assertNotNull(newUser);
 
-    }
+//        User u = User.builder().account(account).password(password).status(status).email(email).build();
 
+    }
     @Test
     @Transactional
     public void read(){
