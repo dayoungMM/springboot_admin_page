@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class AdminUSer {
+public class AdminUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,7 +29,7 @@ public class AdminUSer {
 
     private LocalDateTime lastLoginAt;
 
-    private LocalDateTime passwordUpdateAt;
+    private LocalDateTime passwordUpdatedAt;
 
     private int loginFailCount;
 
