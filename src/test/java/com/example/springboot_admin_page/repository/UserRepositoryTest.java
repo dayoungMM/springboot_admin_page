@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -24,76 +25,77 @@ public class UserRepositoryTest extends SpringbootAdminPageApplication {
 
     @Test
     public void create(){
-        User user = new User();
-        user.setAccount("TestUser02");
-        user.setEmail("TestUser02@gmail.com");
-        user.setPhoneNumber("010-2111-1111");
-        user.setCreatedAt(LocalDateTime.now());
-        user.setCreatedBy("admin");
+        String account = "TEST01";
+        String password = "TEST01";
+        String status = "REGISTERED";
+        String email = "Test01@gmail.com";
+        String phoneNumber = "010-1111-2222";
+        LocalDateTime registeredAt  = LocalDateTime.now();
+        LocalDateTime createdAt = LocalDateTime.now();
+        String createdBy = "AdminServer";
 
+        User user = new User();
+        user.setAccount(account);
+        user.setPassword(password);
+        user.setStatus(status);
+        user.setEmail(email);
+        user.setPhoneNumber(phoneNumber);
+        user.setRegisteredAt(registeredAt);
+        user.setCreatedAt(createdAt);
+        user.setCreatedBy(createdBy);
 
         User newUser = userRepository.save(user);
-        System.out.println("newUser: "  + newUser);
+
+        Assert.assertNotNull(newUser);
+
     }
 
     @Test
     @Transactional
     public void read(){
-
-        //select * from user where id= ?
-        Optional<User> user = userRepository.findByAccount("TestUser02");
-
-
-        user.ifPresent(selectUser -> {
-
-            selectUser.getOrderDetailList().stream().forEach(detail ->{
-                Item item = detail.getItem();
-                System.out.println(item);
-
-            });
-        });
-
+        User user = userRepository.findFirstByPhoneNumberOrdOrderByIdDesc("010-1111-2222");
+        Assert.assertNotNull(user);
     }
-
-    @Test
-    @Transactional
-    public void update(){
-        Optional<User> user = userRepository.findById(2L);
-
-
-        user.ifPresent(selectUser -> {
-            selectUser.setAccount("pppp");
-            selectUser.setUpdatedAt(LocalDateTime.now());
-            selectUser.setUpdatedBy("update method()");
-
-            userRepository.save(selectUser);
-        });
-
-    }
-
-    @Test
-    // 데이터베이스에서 쿼리를 실행하되, 다 하고 롤백을 해서 데이터베이스에서 정보가 수정되지 않음
-    @Transactional
-    public void delete(){
-        Optional<User> user = userRepository.findById(4L);
-
-        Assert.assertTrue(user.isPresent());
-
-        user.ifPresent(selectUser -> {
-
-            userRepository.delete(selectUser);
-        });
-
-        Optional<User> deleteUser = userRepository.findById(4L);
-
-        Assert.assertFalse(deleteUser.isPresent());
 //
-//        if(deleteUser.isPresent()){
-//            System.out.println("데이터 존재: "+ deleteUser.get());
-//        }else{
-//            System.out.println("데이터 삭제됨");
-//        }
-
-
-    }
+//    @Test
+//    @Transactional
+//    public void update(){
+//        Optional<User> user = userRepository.findById(2L);
+//
+//
+//        user.ifPresent(selectUser -> {
+//            selectUser.setAccount("pppp");
+//            selectUser.setUpdatedAt(LocalDateTime.now());
+//            selectUser.setUpdatedBy("update method()");
+//
+//            userRepository.save(selectUser);
+//        });
+//
+//    }
+//
+//    @Test
+//    // 데이터베이스에서 쿼리를 실행하되, 다 하고 롤백을 해서 데이터베이스에서 정보가 수정되지 않음
+//    @Transactional
+//    public void delete(){
+//        Optional<User> user = userRepository.findById(4L);
+//
+//        Assert.assertTrue(user.isPresent());
+//
+//        user.ifPresent(selectUser -> {
+//
+//            userRepository.delete(selectUser);
+//        });
+//
+//        Optional<User> deleteUser = userRepository.findById(4L);
+//
+//        Assert.assertFalse(deleteUser.isPresent());
+////
+////        if(deleteUser.isPresent()){
+////            System.out.println("데이터 존재: "+ deleteUser.get());
+////        }else{
+////            System.out.println("데이터 삭제됨");
+////        }
+//
+//
+//    }
 }
