@@ -3,6 +3,7 @@ package com.example.springboot_admin_page.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-
+@ToString(exclude = {"orderDetailList","partner"})
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,7 +43,12 @@ public class Item {
 
     private String updatedBy;
 
-    private Long partnerId;
+    @ManyToOne
+    private Partner partner;
+
+    //item 1: n OrderDetail
+    @OneToMany(fetch= FetchType.LAZY, mappedBy = "item")
+    private List<OrderDetail> orderDetailList;
 
 //    @OneToMany(fetch= FetchType.LAZY, mappedBy = "item")
 //    private List<OrderDetail> orderDetailList;
