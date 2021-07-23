@@ -31,7 +31,7 @@ public class OrderGroupRepositoryTest extends SpringbootAdminPageApplication {
         ordergroup.setArrivalDate(LocalDateTime.now());
         ordergroup.setCreatedAt(LocalDateTime.now());
         ordergroup.setCreatedBy( "AdminServer");
-        ordergroup.setUserId(1L);
+//        ordergroup.setUserId(1L);
 
         OrderGroup newOrderGroup = orderGroupRepository.save(ordergroup);
         Assert.assertNotNull(newOrderGroup);

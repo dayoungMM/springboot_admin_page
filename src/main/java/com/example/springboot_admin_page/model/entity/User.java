@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-
+@ToString(exclude = {"orderGroup"})
 @Table(name="User")
 public class User {
     @Id
@@ -51,7 +51,9 @@ public class User {
     // 연관관계 있는 테이블 다 JOIN 하고 그 테이블에서 Select
     // JOIN 할게 많으면 select 하나만 해도 엄청 오래걸릴 수 있음
     // 따라서 EAGER는 1:1 일때 추천
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-//    private List<OrderDetail> orderDetailList;
+
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<OrderGroup> orderGroupList;
 
 }

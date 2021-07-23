@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-
+@ToString(exclude = "orderGroup")
 // lombok을 쓰게 되면 ToString 자동으로 만들어주는데 user, item이 서로 상호충돌 나서 에러생김. 연관관계인 경우 exclude해서 충돌 막아야함
 //@ToString(exclude = {"user","item"})
 public class OrderDetail {
@@ -41,7 +41,10 @@ public class OrderDetail {
 
     private Long itemId;
 
-    private Long orderGroupId;
+//    private Long orderGroupId;
+
+    @ManyToOne
+    private OrderGroup orderGroup;
 
 //
 //    //N:1 = orderdetail: user
