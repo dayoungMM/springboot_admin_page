@@ -53,7 +53,7 @@ public class UserRepositoryTest extends SpringbootAdminPageApplication {
     @Test
     @Transactional
     public void read(){
-        User user = userRepository.findFirstByPhoneNumberOrdOrderByIdDesc("010-1111-2222");
+        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1111-2222");
         Assert.assertNotNull(user);
     }
 //
