@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Builder
 public class SettlementApiResponse {
-   private String userId;
+   private Long userId;
 
    private BigDecimal priceSum;
 }

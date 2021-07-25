@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class SettlementApiRequest {
-   private String userId;
+   private Long userId;
 
    private BigDecimal PriceSum;
 }

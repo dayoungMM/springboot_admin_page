@@ -23,7 +23,7 @@ import java.util.List;
 @Accessors(chain=true)
 public class Settlement {
     @Id
-    private String userId;
+    private Long userId;
 
     private BigDecimal priceSum;
 }
