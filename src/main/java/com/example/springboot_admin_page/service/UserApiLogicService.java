@@ -2,6 +2,7 @@ package com.example.springboot_admin_page.service;
 
 import com.example.springboot_admin_page.ifs.CrudInterface;
 import com.example.springboot_admin_page.model.entity.User;
+import com.example.springboot_admin_page.model.enumclass.UserStatus;
 import com.example.springboot_admin_page.model.network.Header;
 import com.example.springboot_admin_page.model.network.request.UserApiRequest;
 import com.example.springboot_admin_page.model.network.response.UserApiResponse;
@@ -29,7 +30,7 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
         User user = User.builder()
                 .account(userApiRequest.getAccount())
                 .password(userApiRequest.getPassword())
-                .status("REGISTERED")
+                .status(UserStatus.REGISTERED)
                 .phoneNumber(userApiRequest.getPhoneNumber())
                 .email(userApiRequest.getEmail())
                 .registeredAt(LocalDateTime.now())
