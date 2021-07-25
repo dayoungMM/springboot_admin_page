@@ -1,6 +1,7 @@
 package com.example.springboot_admin_page.controller;
 
 import com.example.springboot_admin_page.model.SearchParam;
+import com.example.springboot_admin_page.model.network.Header;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,6 +29,12 @@ public class GetController {
         System.out.println(searchParam.getPage());
 
         return searchParam;
+    }
+
+    @GetMapping("/header")
+    public Header getHeader(){
+
+        return Header.builder().resultCode("OK").description("OK").build();
     }
 
 }
