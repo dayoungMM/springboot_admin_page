@@ -90,7 +90,12 @@ public class OrderGroupApiLogicService implements CrudInterface<OrderGroupApiReq
 
     @Override
     public Header delete(Long id) {
-        return null;
+        return orderGroupRepository.findById(id)
+                .map(orderGroup -> {
+                    orderGroupRepository.delete(orderGroup);
+                    return Header.OK();
+                })
+                .orElseGet(()->Header.ERROR("데이터없음"));
     }
 
     private Header<OrderGroupApiResponse> response(OrderGroup orderGroup){
