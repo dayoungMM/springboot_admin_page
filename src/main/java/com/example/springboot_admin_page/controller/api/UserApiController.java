@@ -34,13 +34,15 @@ public class UserApiController implements CrudInterface<UserApiRequest, UserApiR
     @Override
     @PutMapping("")
     public Header<UserApiResponse> update(@RequestBody Header<UserApiRequest> userApiRequest) {
-        return null;
+
+        return userApiLogicService.update(userApiRequest);
     }
 
     @Override
     @DeleteMapping("/{id}")
-    public Header delete(Long id) {
-        return null;
+    public Header delete(@PathVariable(name="id") Long id) {
+
+        return userApiLogicService.delete(id);
     }
 }
 
