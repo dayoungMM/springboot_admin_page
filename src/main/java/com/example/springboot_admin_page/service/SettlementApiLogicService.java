@@ -19,37 +19,32 @@ public class SettlementApiLogicService {
     @Autowired
     private SettlementRepository settlementRepository;
 
-//    public boolean updateTable(){
-//
-//        try{
-//            settlementRepository.updateTable();
-//            return true;
-//
-//        }catch(Exception e){
-//            log.error("Update settlement table error>>>>>>>" + e.getMessage());
-//            return false;
-//
-//        }
-//
-//    }
+    public boolean updateTable(){
+
+        try{
+            settlementRepository.updateTable();
+            return true;
+
+        }catch(Exception e){
+            log.error("Update settlement table error>>>>>>>" + e.getMessage());
+            return false;
+
+        }
+
+    }
 
     public Header<SettlementApiResponse> updateAndRead(Long id){
-        Optional<Settlement> optional = settlementRepository.findById(id);
 
-        return optional.map(settlement -> response(settlement))
-                .orElseGet(() -> Header.ERROR("데이터 없음"));
+        Boolean updateResult = updateTable();
+        if (updateResult){
+            Optional<Settlement> optional = settlementRepository.findById(id);
 
+            return optional.map(settlement -> response(settlement))
+                    .orElseGet(() -> Header.ERROR("데이터 없음"));
 
-//        Boolean updateResult = updateTable();
-//        if (updateResult){
-//            Optional<Settlement> optional = settlementRepository.findById(id);
-//
-//            return optional.map(settlement -> response(settlement))
-//                    .orElseGet(() -> Header.ERROR("데이터 없음"));
-//
-//        }else{
-//            return Header.ERROR("settlement 조회 불가 (DB ERROR)");
-//        }
+        }else{
+            return Header.ERROR("settlement 조회 불가 (DB ERROR)");
+        }
     }
 
     private Header<SettlementApiResponse> response(Settlement settlement){
