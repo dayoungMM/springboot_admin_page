@@ -2,6 +2,7 @@ package com.example.springboot_admin_page.controller.api;
 
 import com.example.springboot_admin_page.controller.CrudController;
 import com.example.springboot_admin_page.ifs.CrudInterface;
+import com.example.springboot_admin_page.model.entity.OrderGroup;
 import com.example.springboot_admin_page.model.network.Header;
 
 
@@ -18,14 +19,14 @@ import javax.annotation.PostConstruct;
 @Slf4j
 @RestController
 @RequestMapping("/api/orderGroup")
-public class OrderGroupApiController extends CrudController<OrderGroupApiRequest, OrderGroupApiResponse> {
+public class OrderGroupApiController extends CrudController<OrderGroupApiRequest, OrderGroupApiResponse, OrderGroup> {
 
-    @Autowired
-    private OrderGroupApiLogicService orderGroupApiLogicService;
-
-    @PostConstruct
-    public void init(){
-        this.baseService = orderGroupApiLogicService;
-    }
+//    @Autowired
+//    private OrderGroupApiLogicService orderGroupApiLogicService;
+//
+//    @PostConstruct
+//    public void init(){
+//        this.baseService = orderGroupApiLogicService;
+//    }
 
 }
