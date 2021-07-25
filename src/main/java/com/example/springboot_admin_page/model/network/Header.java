@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,7 +22,8 @@ public class Header<T> {
 
     private T data;
 
-    //OK
+    private Pagination pagination;
+
     public static <T> Header<T> OK(){
         return (Header<T>) Header.builder()
                 .transactionTime(LocalDateTime.now())
@@ -32,7 +32,6 @@ public class Header<T> {
                 .build();
     }
 
-    //DATA OK
     public static <T> Header<T> OK(T data){
         return (Header<T>) Header.builder()
                 .transactionTime(LocalDateTime.now())
@@ -42,12 +41,21 @@ public class Header<T> {
                 .build();
     }
 
-    //ERROR
+    public static <T> Header<T> OK(T data, Pagination pagination){
+        return (Header<T>) Header.builder()
+                .transactionTime(LocalDateTime.now())
+                .resultCode("OK")
+                .description("OK")
+                .data(data)
+                .pagination(pagination)
+                .build();
+    }
+
     public static <T> Header<T> ERROR(String description){
         return (Header<T>) Header.builder()
                 .transactionTime(LocalDateTime.now())
                 .resultCode("ERROR")
-                .description(description)
+                .description("description")
                 .build();
     }
 
